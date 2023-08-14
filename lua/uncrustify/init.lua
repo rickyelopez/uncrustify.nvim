@@ -30,12 +30,14 @@ end
 --- @return { first: integer, last: integer } range
 --- @package
 local function get_range()
-  local a = vim.fn.getpos("v")[2]
+  local a = vim.fn.getpos("v")[2] - 1
   local b = vim.fn.getpos(".")[2]
-  return {
+  local range = {
     first = a < b and a or b,
     last = a < b and b or a,
   }
+  -- print("Formatting range " .. range.first .. " to " .. range.last)
+  return range
 end
 
 --- Format function, formats selected range in visual mode, or the whole file otherwise
@@ -54,6 +56,9 @@ M.format = function()
   end
 
   local text = table.concat(vim.api.nvim_buf_get_lines(0, range.first, range.last, false), "\n")
+  -- if range.last ~= -1 then
+  --   print(text)
+  -- end
 
   local results = run_uncrustify({ args = args, text = text })
   if not results then
