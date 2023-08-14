@@ -33,6 +33,9 @@ M.set_config = function(params)
   end
 
   apply_opt("uncrustify_bin")
+  apply_opt("uncrustify_cfg_path")
+  apply_opt("filetype_mapping")
+  apply_opt("format_timeout")
 end
 
 return M

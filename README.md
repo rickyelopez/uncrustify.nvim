@@ -16,27 +16,31 @@ Maybe someone else could figure it out, but this didn't take very long to make a
 Packer:
 ```lua
 use({
-    "rickyelopez/uncrustify.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
+  "rickyelopez/uncrustify.nvim",
+  requires = { "nvim-lua/plenary.nvim" },
+  config = function()
+    require("uncrustify").setup({format_timeout = 5000})
+  end,
 })
 ```
 
 ## Configuration
-Call the `setup()` function if you want to modify any of the default options. Available options are:
+Call the `setup()` function (either with Packer as shown above, or elsewhere in your config)
+if you want to modify any of the default options. Available options are:
 
-- `uncrustify_bin_path`
-  default: `"uncrustify"`
-  Path to use to run uncrustify
-- `uncrustify_cfg_path`
-  default: `vim.env.HOME .. "/.config/uncrustify.cfg"`
-  Path to the uncrustify config file
-  note: this does not presently expand env vars. Use `vim.env.VAR_NAME` to construct the path.
-- `filetype_mapping`
-  default: `{ c = "c", cpp = "cpp" }`
-  Table mapping vim filetypes to uncrustify filetypes
-- `format_timeout`
-  default: 3000
-  Timeout when running uncrustify
+- `uncrustify_bin_path`  
+  default: `"uncrustify"`  
+  Path to use to run uncrustify  
+- `uncrustify_cfg_path`  
+  default: `vim.env.HOME .. "/.config/uncrustify.cfg"`  
+  Path to the uncrustify config file  
+  note: this does not presently expand env vars. Use `vim.env.VAR_NAME` to construct the path.  
+- `filetype_mapping`  
+  default: `{ c = "c", cpp = "cpp" }`  
+  Table mapping vim filetypes to uncrustify filetypes  
+- `format_timeout`  
+  default: 3000  
+  Timeout when running uncrustify  
 
 
 ## Usage
